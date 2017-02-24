@@ -8,4 +8,8 @@ while [ -h "$SELF_PATH" ]; do
     SELF_PATH=$(cd "$DIR" && cd $(dirname -- "$SYM") && pwd)/$(basename -- "$SYM")
 done
 
+currentDir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+PATH="$PATH;$currentDir/"
+
+php "$currentDir/check-env.php"
 exec java -jar "${SELF_PATH}.jar" "$@"
